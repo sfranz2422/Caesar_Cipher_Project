@@ -1,12 +1,38 @@
-# Project: Caesar Shifts
+```py
 
-The basics:
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-    Goal: SWBAT use for loops over strings to implement Caesar Shifts.
-    Timing: around 30 minutes
+def caesar(start_text, shift_amount, cipher_direction):
+  end_text = ""
+  if cipher_direction == "decode":
+    shift_amount *= -1
+  for char in start_text:
+    if char in alphabet:
+      position = alphabet.index(char)
+      new_position = position + shift_amount
+      end_text += alphabet[new_position]
+    else:
+      end_text += char
+  print(f"Here's the {cipher_direction}d result: {end_text}")
 
-Implementation notes:
 
-Going slowly here pays off. If students generate their own solutions to encoding and dealing with the problem of going past the end of the alphabet, they'll be much more comfortable moving on with confidence.
 
-A possible approach here is to consider helper functions that encode a single letter. Either way, any technique that gives students time to think and plan before coding - working in partners, drafting pseudocode, anything like that - is a good idea.
+keep_running = True
+while keep_running:
+
+  direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+  text = input("Type your message:\n").lower()
+  shift = int(input("Type the shift number:\n"))
+  shift = shift % 26
+
+  caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
+
+  restart = input("Type 'yes' if you want to go again. Otherwise type 'no'.\n")
+  if restart == "no":
+    keep_running = False
+    print("Goodbye")
+    
+
+
+
+```
